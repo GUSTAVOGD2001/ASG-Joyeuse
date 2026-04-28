@@ -10,6 +10,17 @@ services:
       - mosquitto_data:/mosquitto/data
       - mosquitto_logs:/mosquitto/log
 
+  ngrok:
+    image: ngrok/ngrok:latest
+    restart: always
+    environment:
+      - 2zR5KIu1255hD0EG7JOzS8jF3FB_24TtKBFh7cVykm6UYCCmN
+    command: tcp 9002
+    ports:
+      - "4040:4040"
+    depends_on:
+      - mosquitto
+
 volumes:
   mosquitto_data:
   mosquitto_logs:
