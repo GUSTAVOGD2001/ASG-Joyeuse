@@ -15,7 +15,7 @@ services:
     restart: always
     command: tcp mosquitto:9001
     environment:
-      - NGROK_AUTHTOKEN=${2zR5KIu1255hD0EG7JOzS8jF3FB_24TtKBFh7cVykm6UYCCmN}
+      NGROK_AUTHTOKEN: "2zR5KIu1255hD0EG7JOzS8jF3FB_24TtKBFh7cVykm6UYCCmN"
     depends_on:
       - mosquitto
     ports:
