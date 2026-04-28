@@ -13,13 +13,13 @@ services:
   ngrok:
     image: ngrok/ngrok:latest
     restart: always
+    command: tcp mosquitto:9001
     environment:
-      - 2zR5KIu1255hD0EG7JOzS8jF3FB_24TtKBFh7cVykm6UYCCmN
-    command: tcp 9002
-    ports:
-      - "4040:4040"
+      - NGROK_AUTHTOKEN=${2zR5KIu1255hD0EG7JOzS8jF3FB_24TtKBFh7cVykm6UYCCmN}
     depends_on:
       - mosquitto
+    ports:
+      - "4040:4040"
 
 volumes:
   mosquitto_data:
