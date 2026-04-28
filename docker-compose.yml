@@ -1,5 +1,6 @@
+version: '3.8'
 services:
-  mqtt-broker:
+  mosquitto:
     image: eclipse-mosquitto:2
     container_name: mqtt-broker
     restart: always
@@ -7,9 +8,15 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - mosquitto_data:/mosquitto/data
       - mosquitto_logs:/mosquitto/log
+    networks:
+      - mqtt-net
+
+networks:
+  mqtt-net:
+    driver: bridge
 
 volumes:
   mosquitto_data:
