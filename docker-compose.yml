@@ -4,22 +4,17 @@ services:
     restart: always
     ports:
       - "1884:1883"
-      - "9002:9001"
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - mosquitto_data:/mosquitto/data
       - mosquitto_logs:/mosquitto/log
 
-  ngrok:
-    image: ngrok/ngrok:latest
+  cloudflared:
+    image: cloudflare/cloudflared:latest
     restart: always
-    command: http mosquitto:9001
-    environment:
-      NGROK_AUTHTOKEN: "2zR5KIu1255hD0EG7JOzS8jF3FB_24TtKBFh7cVykm6UYCCmN"
+    command: tunnel --no-autoupdate run --token eyJhIjoiMjA5M2I2NDU2YTc2YjIyYjg0YTRiMjk5MzM4NDEzYjAiLCJ0IjoiMzg3OThlMmYtNDU3Mi00NDUyLThkZmEtNWE5NmQyOTUzMmY3IiwicyI6Ik1UWTFOR0kxT1dNdE1qTTFZaTAwWkRrNUxXRTFaRFV0TURFell6bGtNMlJrWldVeCJ9
     depends_on:
       - mosquitto
-    ports:
-      - "4040:4040"
 
 volumes:
   mosquitto_data:
