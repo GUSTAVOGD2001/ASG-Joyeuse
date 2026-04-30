@@ -4,17 +4,11 @@ services:
     restart: always
     ports:
       - "1884:1883"
+      - "9002:9001"
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - mosquitto_data:/mosquitto/data
       - mosquitto_logs:/mosquitto/log
-
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    restart: always
-    command: tunnel --no-autoupdate run --token eyJhIjoiMjA5M2I2NDU2YTc2YjIyYjg0YTRiMjk5MzM4NDEzYjAiLCJ0IjoiMzg3OThlMmYtNDU3Mi00NDUyLThkZmEtNWE5NmQyOTUzMmY3IiwicyI6Ik1UWTFOR0kxT1dNdE1qTTFZaTAwWkRrNUxXRTFaRFV0TURFell6bGtNMlJrWldVeCJ9
-    depends_on:
-      - mosquitto
 
 volumes:
   mosquitto_data:
